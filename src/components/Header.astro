@@ -1,0 +1,212 @@
+---
+import { site } from '../data/site';
+import { url } from '../utils/url';
+import Icon from './Icon.astro';
+
+const navItems = [
+  { label: 'Servicios', href: url('/#servicios') },
+  { label: 'Nosotros', href: url('/#nosotros') },
+  { label: 'Proceso', href: url('/#proceso') },
+  { label: 'Contacto', href: url('/#contacto') },
+];
+---
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href={url('/')} class="brand" aria-label={`${site.name} — Inicio`}>
+      <span class="brand-name">Barkala</span>
+      <span class="brand-tag">Asesoría · {site.city}</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navegación principal">
+      <ul>
+        {navItems.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <a class="header-phone" href={`tel:${site.phone.replace(/\s/g, '')}`} aria-label={`Llamar al ${site.phoneDisplay}`}>
+      <Icon name="phone" size={18} />
+      <span>{site.phoneDisplay}</span>
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-mobile">
+      <Icon name="menu" size={24} />
+    </button>
+  </div>
+
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Navegación móvil" hidden>
+    <ul>
+      {navItems.map((item) => (
+        <li><a href={item.href}>{item.label}</a></li>
+      ))}
+      <li>
+        <a class="nav-mobile-phone" href={`tel:${site.phone.replace(/\s/g, '')}`}>
+          <Icon name="phone" size={18} /> {site.phoneDisplay}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: saturate(180%) blur(8px);
+    -webkit-backdrop-filter: saturate(180%) blur(8px);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .site-header[data-scrolled='true'] {
+    border-bottom-color: var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    min-height: 72px;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    color: var(--color-text);
+  }
+  .brand:hover { color: var(--color-primary); }
+  .brand-name {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.375rem;
+    letter-spacing: -0.01em;
+  }
+  .brand-tag {
+    font-size: 0.75rem;
+    color: var(--color-text-soft);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+  .nav-desktop ul {
+    display: flex;
+    gap: var(--space-8);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-desktop a {
+    color: var(--color-text-mid);
+    font-size: var(--fs-body-sm);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+  }
+  .nav-desktop a:hover { color: var(--color-primary); }
+
+  .header-phone {
+    display: none;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: var(--fs-body-sm);
+    padding: 0.5rem 0.875rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition);
+  }
+  .header-phone:hover {
+    border-color: var(--color-primary);
+    background: var(--color-bg-alt);
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--color-text);
+    border-radius: var(--radius-sm);
+  }
+  .nav-toggle:hover { background: var(--color-bg-alt); }
+
+  .nav-mobile {
+    border-top: 1px solid var(--color-border);
+    background: #fff;
+  }
+  .nav-mobile[hidden] { display: none; }
+  .nav-mobile ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .nav-mobile a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0.75rem 0;
+    color: var(--color-text);
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav-mobile li:last-child a { border-bottom: 0; }
+  .nav-mobile-phone { color: var(--color-primary) !important; }
+
+  @media (min-width: 768px) {
+    .nav-desktop { display: block; }
+    .header-phone { display: inline-flex; }
+    .nav-toggle { display: none; }
+    .nav-mobile { display: none !important; }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('nav-toggle');
+  const mobile = document.getElementById('nav-mobile');
+
+  if (header) {
+    const onScroll = () => {
+      header.dataset.scrolled = window.scrollY > 4 ? 'true' : 'false';
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  if (toggle && mobile) {
+    toggle.addEventListener('click', () => {
+      const isOpen = mobile.hasAttribute('hidden') === false;
+      if (isOpen) {
+        mobile.setAttribute('hidden', '');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menú');
+      } else {
+        mobile.removeAttribute('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Cerrar menú');
+      }
+    });
+
+    mobile.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobile.setAttribute('hidden', '');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menú');
+      });
+    });
+  }
+</script>

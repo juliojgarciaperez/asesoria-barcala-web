@@ -1,0 +1,196 @@
+---
+import { site } from '../data/site';
+import { url } from '../utils/url';
+import Icon from './Icon.astro';
+
+const heroBgUrl = url('images/aranjuez-hero.webp');
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <p class="eyebrow">Desde {site.foundedYear} · {site.street} · {site.city}</p>
+      <h1 id="hero-title">
+        Asesoría integral para empresas y autónomos en <span class="accent">{site.city}</span>.
+      </h1>
+      <p class="hero-lead">
+        En Barkala acompañamos a empresas, autónomos y particulares de {site.city} y la comarca con un
+        servicio cercano y técnicamente riguroso. Contabilidad, fiscalidad, laboral y gestión, bajo un
+        mismo techo.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contacto">
+          Solicita una consulta
+          <Icon name="arrow-right" size={18} />
+        </a>
+        <a class="btn btn-ghost" href="#servicios">
+          Ver servicios
+          <Icon name="arrow-right" size={18} />
+        </a>
+      </div>
+
+      <ul class="hero-pills" aria-label="Áreas de servicio">
+        <li>Fiscal</li>
+        <li>Contable</li>
+        <li>Laboral</li>
+        <li>Controlling</li>
+        <li>Empresarial</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-image-wrap">
+        <div class="hero-image-bg"></div>
+        <div class="hero-overlay">
+          <div class="overlay-card">
+            <Icon name="check" size={20} class="overlay-icon" />
+            <div>
+              <strong>+{site.yearsExperience} años</strong>
+              <span>asesorando en {site.city}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style define:vars={{ heroBgUrl: `url('${heroBgUrl}')` }}>
+  .hero {
+    padding-block: clamp(3rem, 2rem + 4vw, 6rem);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(800px 400px at 90% 10%, rgba(31, 78, 121, 0.05), transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-content { max-width: 640px; }
+  .hero-content h1 {
+    margin-block: 0 var(--space-6);
+  }
+  .accent { color: var(--color-primary); }
+
+  .hero-lead {
+    font-size: var(--fs-body-lg);
+    color: var(--color-text-mid);
+    max-width: 56ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    margin: var(--space-10) 0 0;
+    padding: 0;
+  }
+  .hero-pills li {
+    font-size: 0.8125rem;
+    color: var(--color-text-soft);
+    padding: 0.375rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: #fff;
+  }
+
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 4 / 3;
+  }
+
+  .hero-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-primary);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero-image-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(31, 78, 121, 0.85), rgba(22, 58, 92, 0.95)),
+      var(--heroBgUrl) center/cover no-repeat;
+    background-blend-mode: multiply;
+  }
+  /* Fallback patrón si la imagen no existe todavía */
+  .hero-image-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08), transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(91, 143, 191, 0.25), transparent 60%);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    left: var(--space-6);
+    bottom: var(--space-6);
+    right: var(--space-6);
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .overlay-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(8px);
+  }
+  .overlay-card strong {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .overlay-card span {
+    font-size: 0.8125rem;
+    color: var(--color-text-mid);
+  }
+  .overlay-icon {
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 50%;
+  }
+
+  @media (min-width: 960px) {
+    .hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-16);
+    }
+  }
+</style>

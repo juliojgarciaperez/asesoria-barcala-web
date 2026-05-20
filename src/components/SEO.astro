@@ -1,0 +1,113 @@
+---
+import { site } from '../data/site';
+import { absoluteUrl, url } from '../utils/url';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const defaultTitle = `${site.name} · Asesoría fiscal y contable en ${site.city}`;
+const defaultDescription = `Asesoría integral en ${site.city} para empresas y autónomos: fiscal, contable, laboral y empresarial. Trato cercano y técnicamente riguroso. Pide cita.`;
+
+const {
+  title = defaultTitle,
+  description = defaultDescription,
+  ogImage = 'og-image.jpg',
+  noindex = false,
+} = Astro.props;
+
+const canonical = Astro.url.toString();
+const ogImageUrl = absoluteUrl(ogImage);
+const siteUrl = absoluteUrl();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AccountingService',
+  '@id': siteUrl,
+  name: site.name,
+  url: siteUrl,
+  image: ogImageUrl,
+  telephone: site.phone,
+  email: site.email,
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.street,
+    addressLocality: site.city,
+    addressRegion: site.region,
+    postalCode: site.postalCode,
+    addressCountry: site.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: site.latitude,
+    longitude: site.longitude,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '14:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '16:00',
+      closes: '19:00',
+    },
+  ],
+  areaServed: [
+    { '@type': 'City', name: site.city },
+    { '@type': 'AdministrativeArea', name: 'Comunidad de Madrid' },
+  ],
+  knowsAbout: [
+    'Asesoría fiscal',
+    'Asesoría contable',
+    'Asesoría laboral',
+    'Controlling financiero',
+    'Constitución de sociedades',
+  ],
+};
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
+<link rel="apple-touch-icon" href={url('apple-touch-icon.png')} />
+
+<meta name="theme-color" content="#1f4e79" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+/>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

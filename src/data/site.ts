@@ -1,0 +1,35 @@
+export const site = {
+  name: 'Asesoría Barkala',
+  shortName: 'Barkala',
+  domain: 'juliojgarciaperez.github.io/asesoria-barcala-web',
+  url: 'https://juliojgarciaperez.github.io/asesoria-barcala-web',
+
+  // Datos de contacto — sustituir por valores reales antes de publicar
+  phone: '+34 918 00 00 00',
+  phoneDisplay: '918 00 00 00',
+  email: 'hola@barkala.es',
+
+  // Dirección
+  street: 'Calle Postas, 82',
+  postalCode: '28300',
+  city: 'Aranjuez',
+  region: 'Madrid',
+  country: 'ES',
+
+  // Coordenadas (Aranjuez centro, aproximadas — verificar antes de publicar)
+  latitude: 40.0312,
+  longitude: -3.6029,
+
+  // Horario
+  hoursMorning: '9:00 – 14:00',
+  hoursAfternoon: '16:00 – 19:00',
+
+  // Cifras de confianza
+  yearsExperience: 25,
+  numClients: 300,
+  foundedYear: 2000,
+
+  // Legal — sustituir
+  legalName: 'Asesoría Barkala S.L.',
+  cif: 'B-00000000',
+} as const;

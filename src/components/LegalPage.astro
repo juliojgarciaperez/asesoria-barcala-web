@@ -1,0 +1,75 @@
+---
+import { url } from '../utils/url';
+
+interface Props {
+  title: string;
+  lastUpdated: string;
+}
+
+const { title, lastUpdated } = Astro.props;
+---
+
+<section class="legal-section">
+  <div class="container-narrow">
+    <header class="legal-head">
+      <a href={url('/')} class="back-link">← Volver al inicio</a>
+      <h1>{title}</h1>
+      <p class="legal-updated">Última actualización: {lastUpdated}</p>
+    </header>
+
+    <article class="legal-content">
+      <slot />
+    </article>
+  </div>
+</section>
+
+<style>
+  .legal-section {
+    padding-block: var(--space-16) var(--section-y);
+  }
+  .legal-head { margin-bottom: var(--space-12); }
+  .back-link {
+    display: inline-block;
+    margin-bottom: var(--space-6);
+    font-size: var(--fs-body-sm);
+    color: var(--color-text-soft);
+  }
+  .back-link:hover { color: var(--color-primary); }
+  .legal-updated {
+    color: var(--color-text-soft);
+    font-size: var(--fs-body-sm);
+    margin: 0;
+  }
+
+  .legal-content :global(h2) {
+    font-size: 1.5rem;
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-4);
+  }
+  .legal-content :global(h2:first-child) { margin-top: 0; }
+  .legal-content :global(h3) {
+    font-size: 1.125rem;
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+  }
+  .legal-content :global(p),
+  .legal-content :global(li) {
+    color: var(--color-text-mid);
+    line-height: 1.7;
+  }
+  .legal-content :global(ul),
+  .legal-content :global(ol) {
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-4);
+  }
+  .legal-content :global(strong) { color: var(--color-text); }
+  .legal-content :global(.placeholder) {
+    background: #fff7d6;
+    border-left: 3px solid #d6a800;
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-sm);
+    margin-block: var(--space-4);
+    font-size: var(--fs-body-sm);
+  }
+  .legal-content :global(.placeholder strong) { color: #6b4f00; }
+</style>

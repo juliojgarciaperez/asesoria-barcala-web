@@ -1,0 +1,119 @@
+---
+const steps = [
+  {
+    n: '01',
+    title: 'Primera reunión',
+    text: 'Nos cuentas tu situación. Sin compromiso y sin coste.',
+  },
+  {
+    n: '02',
+    title: 'Diagnóstico y propuesta',
+    text: 'Analizamos tu caso y te presentamos un plan claro, con honorarios cerrados.',
+  },
+  {
+    n: '03',
+    title: 'Plan de trabajo',
+    text: 'Asumimos la gestión y dejamos calendarios y responsabilidades por escrito.',
+  },
+  {
+    n: '04',
+    title: 'Seguimiento continuo',
+    text: 'Te informamos antes de cada vencimiento y revisamos tu negocio periódicamente.',
+  },
+];
+---
+
+<section class="section section-alt" id="proceso" aria-labelledby="proceso-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">Cómo trabajamos</p>
+      <h2 id="proceso-title">Un proceso claro, sin sorpresas.</h2>
+      <p class="section-lead">
+        Desde la primera reunión hasta el seguimiento continuo, sabes en todo momento qué estamos
+        haciendo, cuándo y por qué.
+      </p>
+    </header>
+
+    <ol class="steps">
+      {steps.map((step) => (
+        <li class="step">
+          <div class="step-number">{step.n}</div>
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .section-head {
+    max-width: 720px;
+    margin-bottom: var(--space-12);
+  }
+  .section-head h2 { margin-bottom: var(--space-4); }
+  .section-lead {
+    font-size: var(--fs-body-lg);
+    color: var(--color-text-mid);
+  }
+
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    position: relative;
+  }
+
+  .step {
+    position: relative;
+    padding: var(--space-8) var(--space-6);
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .step-number {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .step h3 {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .step p {
+    font-size: var(--fs-body-sm);
+    color: var(--color-text-mid);
+    margin: 0;
+  }
+
+  @media (min-width: 700px) {
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+    }
+  }
+  @media (min-width: 1024px) {
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: calc(var(--space-8) + 0.75rem);
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-border) 20%, var(--color-border) 80%, transparent);
+      z-index: 0;
+    }
+    .step { z-index: 1; }
+  }
+</style>

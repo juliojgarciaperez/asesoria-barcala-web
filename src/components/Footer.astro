@@ -1,0 +1,137 @@
+---
+import { site } from '../data/site';
+import { url } from '../utils/url';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="footer-name">{site.name}</span>
+      <p>
+        Asesoría fiscal, contable, laboral y empresarial en {site.city}. Atendemos a empresas,
+        autónomos y particulares de toda la comarca.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <address>
+        {site.street}<br />
+        {site.postalCode} {site.city} ({site.region})<br />
+        <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phoneDisplay}</a><br />
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </address>
+    </div>
+
+    <div class="footer-col">
+      <h3>Web</h3>
+      <ul>
+        <li><a href={url('/#servicios')}>Servicios</a></li>
+        <li><a href={url('/#nosotros')}>Nosotros</a></li>
+        <li><a href={url('/#proceso')}>Proceso</a></li>
+        <li><a href={url('/#contacto')}>Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Legal</h3>
+      <ul>
+        <li><a href={url('/aviso-legal')}>Aviso legal</a></li>
+        <li><a href={url('/politica-de-privacidad')}>Política de privacidad</a></li>
+        <li><a href={url('/politica-de-cookies')}>Política de cookies</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© {year} {site.legalName}. Todos los derechos reservados.</span>
+    <span>Hecho con cuidado en {site.city}.</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-bg-dark);
+    color: var(--color-text-on-dark-soft);
+    padding-block: var(--space-16) var(--space-8);
+    font-size: var(--fs-body-sm);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-brand {
+    max-width: 360px;
+  }
+  .footer-name {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: var(--space-3);
+  }
+  .footer-brand p {
+    color: var(--color-text-on-dark-soft);
+    font-size: var(--fs-body-sm);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .footer-col h3 {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #fff;
+    margin-bottom: var(--space-4);
+  }
+
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .footer-col address {
+    font-style: normal;
+    line-height: 1.7;
+    color: var(--color-text-on-dark-soft);
+  }
+
+  .site-footer a {
+    color: var(--color-text-on-dark-soft);
+  }
+  .site-footer a:hover {
+    color: #fff;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-top: var(--space-6);
+    color: var(--color-text-soft);
+    font-size: 0.8125rem;
+  }
+
+  @media (min-width: 700px) {
+    .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: var(--space-8); }
+  }
+  @media (min-width: 700px) {
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+</style>

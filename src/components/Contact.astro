@@ -1,0 +1,237 @@
+---
+import { site } from '../data/site';
+import { url } from '../utils/url';
+import Icon from './Icon.astro';
+
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${site.street}, ${site.postalCode} ${site.city}`
+)}`;
+const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Consulta desde la web')}`;
+---
+
+<section class="section" id="contacto" aria-labelledby="contacto-title">
+  <div class="container contact-grid">
+    <div class="contact-intro">
+      <p class="eyebrow">Hablemos</p>
+      <h2 id="contacto-title">¿Hablamos?</h2>
+      <p class="contact-lead">
+        Cuéntanos qué necesitas. Te respondemos en menos de 24 horas laborables, sin compromiso.
+      </p>
+
+      <ul class="contact-info">
+        <li>
+          <span class="ci-icon" aria-hidden="true"><Icon name="map-pin" size={20} /></span>
+          <div>
+            <strong>Dirección</strong>
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
+              {site.street}<br />
+              {site.postalCode} {site.city} ({site.region})
+            </a>
+          </div>
+        </li>
+        <li>
+          <span class="ci-icon" aria-hidden="true"><Icon name="phone" size={20} /></span>
+          <div>
+            <strong>Teléfono</strong>
+            <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phoneDisplay}</a>
+          </div>
+        </li>
+        <li>
+          <span class="ci-icon" aria-hidden="true"><Icon name="mail" size={20} /></span>
+          <div>
+            <strong>Email</strong>
+            <a href={mailto}>{site.email}</a>
+          </div>
+        </li>
+        <li>
+          <span class="ci-icon" aria-hidden="true"><Icon name="clock" size={20} /></span>
+          <div>
+            <strong>Horario</strong>
+            <span>Lunes a viernes<br />{site.hoursMorning} · {site.hoursAfternoon}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact-form-wrap">
+      <form class="contact-form" action={mailto} method="post" enctype="text/plain" novalidate>
+        <div class="form-row">
+          <label for="name">Nombre y apellidos <span aria-hidden="true">*</span></label>
+          <input id="name" name="name" type="text" required autocomplete="name" />
+        </div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="email">Email <span aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="form-row">
+            <label for="phone">Teléfono</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="message">¿En qué podemos ayudarte? <span aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+
+        <div class="form-check">
+          <input id="rgpd" name="rgpd" type="checkbox" required />
+          <label for="rgpd">
+            He leído y acepto la <a href={url('/politica-de-privacidad')}>política de privacidad</a>.
+            <span aria-hidden="true">*</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          Enviar consulta
+          <Icon name="arrow-right" size={18} />
+        </button>
+
+        <p class="form-note">
+          Al enviar tus datos se abrirá tu cliente de correo. También puedes escribirnos directamente
+          a <a href={mailto}>{site.email}</a>.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .contact-intro h2 { margin-bottom: var(--space-4); }
+  .contact-lead {
+    font-size: var(--fs-body-lg);
+    color: var(--color-text-mid);
+    margin-bottom: var(--space-10);
+  }
+
+  .contact-info {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+  .contact-info li {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+  .ci-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-alt);
+    color: var(--color-primary);
+    border-radius: var(--radius-md);
+  }
+  .contact-info strong {
+    display: block;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 2px;
+    font-size: var(--fs-body-sm);
+  }
+  .contact-info a, .contact-info span {
+    color: var(--color-text-mid);
+    font-size: var(--fs-body);
+    line-height: 1.5;
+  }
+  .contact-info a:hover { color: var(--color-primary); }
+
+  .contact-form-wrap {
+    background: var(--color-bg-alt);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  .contact-form {
+    display: grid;
+    gap: var(--space-5);
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+  @media (min-width: 540px) {
+    .form-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .form-row { display: flex; flex-direction: column; gap: var(--space-2); }
+
+  .form-row label {
+    font-size: var(--fs-body-sm);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+  .form-row label span { color: var(--color-error); margin-left: 2px; }
+
+  .form-row input,
+  .form-row textarea {
+    width: 100%;
+    padding: 0.75rem 0.875rem;
+    background: #fff;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    transition: border-color var(--transition), box-shadow var(--transition);
+    font-family: inherit;
+  }
+  .form-row textarea { resize: vertical; min-height: 120px; }
+  .form-row input:focus,
+  .form-row textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.12);
+  }
+
+  .form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--fs-body-sm);
+    color: var(--color-text-mid);
+  }
+  .form-check input {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primary);
+    flex-shrink: 0;
+  }
+  .form-check a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .form-check label span { color: var(--color-error); }
+
+  .form-note {
+    font-size: 0.8125rem;
+    color: var(--color-text-soft);
+    margin: 0;
+  }
+  .form-note a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (min-width: 960px) {
+    .contact-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--space-16);
+    }
+  }
+</style>

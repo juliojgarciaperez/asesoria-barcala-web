@@ -1,0 +1,159 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import { url } from '../utils/url';
+
+const aboutBgUrl = url('images/aranjuez-jardines.webp');
+
+const values = [
+  { title: 'Atención personalizada', text: 'Un interlocutor directo que conoce tu negocio.' },
+  { title: 'Cumplimiento técnico riguroso', text: 'Al día con AEAT, Seguridad Social, DEHú y Registro Mercantil.' },
+  { title: 'Comunicación clara', text: 'Sin tecnicismos innecesarios. Cuando preguntas, te respondemos.' },
+  { title: 'Compromiso a largo plazo', text: 'Buscamos relaciones de años, no encargos puntuales.' },
+];
+---
+
+<section class="section" id="nosotros" aria-labelledby="nosotros-title">
+  <div class="container about-grid">
+    <div class="about-visual">
+      <div class="about-frame">
+        <div class="about-image"></div>
+        <div class="about-badge">
+          <span class="badge-eyebrow">Despacho</span>
+          <span class="badge-text">{site.street}<br />{site.postalCode} {site.city}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <p class="eyebrow">Sobre nosotros</p>
+      <h2 id="nosotros-title">Cercanos en el trato. Rigurosos en el detalle.</h2>
+
+      <p>
+        Desde nuestra oficina en la {site.street} de {site.city}, en Barkala asesoramos a empresas,
+        autónomos y particulares de toda la comarca. Basándonos en nuestra experiencia y conocimientos
+        técnicos, ofrecemos un enfoque que aporta un valor adicional al servicio tradicional de
+        asesoría: no nos limitamos a cumplir con tus obligaciones, te ayudamos a entender tu negocio.
+      </p>
+      <p>
+        Buscamos establecer vínculos sólidos y duraderos con nuestros clientes, fundamentados en la
+        confianza mutua y en una comunicación honesta y directa.
+      </p>
+
+      <ul class="values">
+        {values.map((v) => (
+          <li>
+            <span class="value-check" aria-hidden="true">
+              <Icon name="check" size={14} />
+            </span>
+            <div>
+              <strong>{v.title}.</strong>
+              <span> {v.text}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style define:vars={{ aboutBgUrl: `url('${aboutBgUrl}')` }}>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .about-visual { position: relative; }
+
+  .about-frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: linear-gradient(160deg, #cdd9e5, #f4f7fb);
+    box-shadow: var(--shadow-md);
+  }
+
+  .about-image {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(31, 78, 121, 0.2), rgba(31, 78, 121, 0.55)),
+      var(--aboutBgUrl) center/cover no-repeat;
+    background-blend-mode: multiply;
+  }
+
+  .about-badge {
+    position: absolute;
+    left: var(--space-6);
+    bottom: var(--space-6);
+    background: rgba(255, 255, 255, 0.96);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(6px);
+    max-width: 240px;
+  }
+  .badge-eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 6px;
+  }
+  .badge-text {
+    display: block;
+    font-size: var(--fs-body-sm);
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+
+  .about-content h2 {
+    max-width: 18ch;
+  }
+
+  .values {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+  .values li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    font-size: var(--fs-body);
+  }
+  .values strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+  .values span:not(.value-check) {
+    color: var(--color-text-mid);
+  }
+
+  .value-check {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 50%;
+    margin-top: 2px;
+  }
+
+  @media (min-width: 960px) {
+    .about-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--space-16);
+    }
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import { services } from '../data/services';
+import ServiceCard from './ServiceCard.astro';
+---
+
+<section class="section section-alt" id="servicios" aria-labelledby="servicios-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">Nuestros servicios</p>
+      <h2 id="servicios-title">Seis áreas. Un único interlocutor.</h2>
+      <p class="section-lead">
+        Cubrimos todas las necesidades de gestión de tu empresa o actividad. Desde el cumplimiento
+        técnico hasta la mirada estratégica que te ayuda a tomar mejores decisiones.
+      </p>
+    </header>
+
+    <div class="services-grid">
+      {services.map((s, i) => (
+        <ServiceCard
+          title={s.title}
+          description={s.description}
+          icon={s.icon}
+          number={String(i + 1).padStart(2, '0')}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-head {
+    max-width: 720px;
+    margin-bottom: var(--space-12);
+  }
+  .section-head h2 { margin-bottom: var(--space-4); }
+  .section-lead {
+    font-size: var(--fs-body-lg);
+    color: var(--color-text-mid);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
