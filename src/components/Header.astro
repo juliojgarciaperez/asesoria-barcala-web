@@ -26,8 +26,14 @@ const navItems = [
       </ul>
     </nav>
 
-    <a class="header-phone" href={`tel:${site.phone.replace(/\s/g, '')}`} aria-label={`Llamar al ${site.phoneDisplay}`}>
-      <Icon name="phone" size={18} />
+    <a
+      class="header-phone"
+      href={site.whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Escríbenos por WhatsApp al ${site.phoneDisplay}`}
+    >
+      <Icon name="whatsapp" size={18} />
       <span>{site.phoneDisplay}</span>
     </a>
 
@@ -42,8 +48,8 @@ const navItems = [
         <li><a href={item.href}>{item.label}</a></li>
       ))}
       <li>
-        <a class="nav-mobile-phone" href={`tel:${site.phone.replace(/\s/g, '')}`}>
-          <Icon name="phone" size={18} /> {site.phoneDisplay}
+        <a class="nav-mobile-phone" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+          <Icon name="whatsapp" size={18} /> WhatsApp · {site.phoneDisplay}
         </a>
       </li>
     </ul>

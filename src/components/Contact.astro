@@ -30,10 +30,10 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Consulta desd
           </div>
         </li>
         <li>
-          <span class="ci-icon" aria-hidden="true"><Icon name="phone" size={20} /></span>
+          <span class="ci-icon ci-icon-wa" aria-hidden="true"><Icon name="whatsapp" size={20} /></span>
           <div>
-            <strong>Teléfono</strong>
-            <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phoneDisplay}</a>
+            <strong>WhatsApp</strong>
+            <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">{site.phoneDisplay}</a>
           </div>
         </li>
         <li>
@@ -135,6 +135,10 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Consulta desd
     background: var(--color-bg-alt);
     color: var(--color-primary);
     border-radius: var(--radius-md);
+  }
+  .ci-icon-wa {
+    background: #25d366;
+    color: #fff;
   }
   .contact-info strong {
     display: block;

@@ -5,8 +5,11 @@ export const site = {
   url: 'https://juliojgarciaperez.github.io/asesoria-barcala-web',
 
   // Datos de contacto — sustituir por valores reales antes de publicar
-  phone: '+34 918 00 00 00',
-  phoneDisplay: '918 00 00 00',
+  phone: '+34 608 68 36 76',
+  phoneDisplay: '608 68 36 76',
+  // Número internacional sin '+' ni espacios, formato wa.me
+  whatsappNumber: '34608683676',
+  whatsappUrl: 'https://wa.me/34608683676',
   email: 'hola@barkala.es',
 
   // Dirección

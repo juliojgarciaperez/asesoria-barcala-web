@@ -32,6 +32,13 @@ const jsonLd = {
   image: ogImageUrl,
   telephone: site.phone,
   email: site.email,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    telephone: site.phone,
+    url: site.whatsappUrl,
+    availableLanguage: ['Spanish'],
+  },
   priceRange: '€€',
   address: {
     '@type': 'PostalAddress',
