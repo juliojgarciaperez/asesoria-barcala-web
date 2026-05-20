@@ -10,7 +10,7 @@ export const site = {
   // Número internacional sin '+' ni espacios, formato wa.me
   whatsappNumber: '34608683676',
   whatsappUrl: 'https://wa.me/34608683676',
-  email: 'hola@barkala.es',
+  email: 'Administracion@asesoriabarkala.com',
 
   // Dirección
   street: 'Calle Postas, 82',

@@ -15,11 +15,24 @@ Landing estática para [Asesoría Barkala](https://barkala.es), construida con [
 ## Comandos
 
 ```bash
-npm install        # instalar dependencias
+npm install        # instalar dependencias (también activa el hook de husky)
 npm run dev        # arrancar servidor de desarrollo (http://localhost:4321)
-npm run build      # construir a /dist (HTML estático)
+npm run build      # construir a /docs (HTML estático que publica GitHub Pages)
 npm run preview    # previsualizar el build en local
 ```
+
+### Despliegue
+
+GitHub Pages está configurado para servir directamente desde `main:/docs`. Hay un
+hook `pre-commit` (Husky) que ejecuta `npm run build` y añade `/docs` al commit
+cuando se han modificado fuentes (`src/`, `public/`, `astro.config.*`,
+`package.json` o `package-lock.json`). Por tanto:
+
+1. Trabaja con normalidad.
+2. `git commit` → el hook regenera `/docs` y lo incluye en el commit.
+3. `git push` → GitHub Pages publica el nuevo `/docs` en unos segundos.
+
+URL pública: <https://juliojgarciaperez.github.io/asesoria-barcala-web/>
 
 ## Estructura
 
@@ -59,14 +72,6 @@ Edita estos archivos con los datos reales:
 | Accessibility | 100 |
 | Best Practices | 100 |
 | SEO | 100 |
-
-## Despliegue en Cloudflare Pages
-
-1. Conectar el repositorio.
-2. Build command: `npm run build`
-3. Build output: `dist`
-4. Variables de entorno: ninguna requerida.
-5. Asignar dominio personalizado.
 
 ## Licencia
 

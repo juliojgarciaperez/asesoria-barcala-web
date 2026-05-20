@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+# Build automático antes de cada commit.
+# Genera /docs (lo que sirve GitHub Pages) y lo añade al commit.
+
+# Si no hay cambios en src/, public/, astro.config o package.json/lock,
+# evitamos rebuild (ahorra unos segundos en commits que solo tocan docs/ o legal).
+if git diff --cached --name-only | grep -qE '^(src/|public/|astro\.config\.|package\.json|package-lock\.json)'; then
+  echo "→ husky/pre-commit: building Astro to /docs..."
+  npm run build --silent
+  git add docs
+else
+  echo "→ husky/pre-commit: sin cambios en fuente, saltando build."
+fi

@@ -1,6 +1,9 @@
 node_modules/
 dist/
 .astro/
+
+# /docs SÍ se versiona — contiene el build publicado en GitHub Pages
+
 .DS_Store
 .env
 .env.local
