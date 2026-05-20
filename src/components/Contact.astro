@@ -30,9 +30,9 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Consulta desd
           </div>
         </li>
         <li>
-          <span class="ci-icon ci-icon-wa" aria-hidden="true"><Icon name="whatsapp" size={20} /></span>
+          <span class="ci-icon" aria-hidden="true"><Icon name="phone" size={20} /></span>
           <div>
-            <strong>WhatsApp</strong>
+            <strong>Teléfono / WhatsApp</strong>
             <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">{site.phoneDisplay}</a>
           </div>
         </li>
@@ -60,15 +60,9 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Consulta desd
           <input id="name" name="name" type="text" required autocomplete="name" />
         </div>
 
-        <div class="form-grid">
-          <div class="form-row">
-            <label for="email">Email <span aria-hidden="true">*</span></label>
-            <input id="email" name="email" type="email" required autocomplete="email" />
-          </div>
-          <div class="form-row">
-            <label for="phone">Teléfono</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" />
-          </div>
+        <div class="form-row">
+          <label for="phone">Teléfono</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" />
         </div>
 
         <div class="form-row">
@@ -90,8 +84,9 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Consulta desd
         </button>
 
         <p class="form-note">
-          Al enviar tus datos se abrirá tu cliente de correo. También puedes escribirnos directamente
-          a <a href={mailto}>{site.email}</a>.
+          Al enviar el formulario se abrirá tu cliente de correo con tu mensaje. También puedes
+          escribirnos directamente a <a href={mailto}>{site.email}</a> o por
+          <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer"> WhatsApp</a>.
         </p>
       </form>
     </div>
@@ -136,10 +131,6 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Consulta desd
     color: var(--color-primary);
     border-radius: var(--radius-md);
   }
-  .ci-icon-wa {
-    background: #25d366;
-    color: #fff;
-  }
   .contact-info strong {
     display: block;
     font-weight: 600;
@@ -164,14 +155,6 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Consulta desd
   .contact-form {
     display: grid;
     gap: var(--space-5);
-  }
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-  }
-  @media (min-width: 540px) {
-    .form-grid { grid-template-columns: 1fr 1fr; }
   }
 
   .form-row { display: flex; flex-direction: column; gap: var(--space-2); }
