@@ -17,6 +17,7 @@ import ServiceCard from './ServiceCard.astro';
     <div class="services-grid">
       {services.map((s, i) => (
         <ServiceCard
+          id={s.id}
           title={s.title}
           description={s.description}
           icon={s.icon}

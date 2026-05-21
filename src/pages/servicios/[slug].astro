@@ -1,0 +1,444 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { services, type Service } from '../../data/services';
+import { url } from '../../utils/url';
+import { site } from '../../data/site';
+
+export const getStaticPaths = (() => {
+  return services.map((service) => ({
+    params: { slug: service.id },
+    props: { service },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+// Servicios relacionados: el resto (máximo 3)
+const related = services.filter((s) => s.id !== service.id).slice(0, 3);
+
+const heroImageUrl = url(service.image);
+const seoTitle = `${service.title} en ${site.city} · ${site.name}`;
+const seoDescription = service.description;
+const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Consulta sobre ${service.title}`)}`;
+---
+
+<Base title={seoTitle} description={seoDescription}>
+  <article class="service-page">
+    <!-- Hero -->
+    <header class="service-hero">
+      <div class="container service-hero-grid">
+        <div class="service-hero-content">
+          <nav class="breadcrumb" aria-label="Migas de pan">
+            <ol>
+              <li><a href={url('/')}>Inicio</a></li>
+              <li><a href={url('/#servicios')}>Servicios</a></li>
+              <li aria-current="page">{service.shortTitle}</li>
+            </ol>
+          </nav>
+
+          <div class="service-icon-pill" aria-hidden="true">
+            <Icon name={service.icon} size={22} />
+            <span>{service.shortTitle}</span>
+          </div>
+
+          <h1>{service.title}</h1>
+          <p class="service-tagline">{service.tagline}</p>
+
+          <div class="service-actions">
+            <a class="btn btn-primary" href={url('/#contacto')}>
+              Solicita una consulta
+              <Icon name="arrow-right" size={18} />
+            </a>
+            <a class="btn btn-secondary" href={mailto}>
+              <Icon name="mail" size={18} />
+              Escríbenos
+            </a>
+          </div>
+        </div>
+
+        <div class="service-hero-visual" aria-hidden="true">
+          <div class="service-image" style={`background-image: url('${heroImageUrl}');`}>
+            <div class="service-image-fallback">
+              <Icon name={service.icon} size={120} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Detalle -->
+    <section class="service-detail section">
+      <div class="container service-detail-grid">
+        <div class="service-intro">
+          <p class="eyebrow">Qué hacemos</p>
+          <p class="service-intro-text">{service.intro}</p>
+        </div>
+
+        <div class="service-blocks">
+          {service.blocks.map((block) => (
+            <div class="service-block">
+              <h2>{block.heading}</h2>
+              <ul>
+                {block.items.map((item) => (
+                  <li>
+                    <span class="check" aria-hidden="true"><Icon name="check" size={14} /></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="service-cta">
+      <div class="container service-cta-inner">
+        <h2>¿Hablamos de tu caso?</h2>
+        <p>Te respondemos en menos de 24 horas laborables. Sin compromiso.</p>
+        <div class="service-cta-actions">
+          <a class="btn btn-primary" href={url('/#contacto')}>
+            Ir al formulario
+            <Icon name="arrow-right" size={18} />
+          </a>
+          <a class="btn btn-secondary" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+            <Icon name="whatsapp" size={18} />
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Otros servicios -->
+    <section class="service-related section section-alt">
+      <div class="container">
+        <header class="related-head">
+          <p class="eyebrow">Otros servicios</p>
+          <h2>Sigue explorando lo que hacemos.</h2>
+        </header>
+
+        <div class="related-grid">
+          {related.map((r) => (
+            <a class="related-card" href={url(`/servicios/${r.id}`)}>
+              <div class="related-icon" aria-hidden="true">
+                <Icon name={r.icon} size={24} />
+              </div>
+              <h3>{r.title}</h3>
+              <p>{r.description}</p>
+              <span class="related-link">
+                Ver detalle <Icon name="arrow-right" size={16} />
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </article>
+</Base>
+
+<style>
+  /* Hero */
+  .service-hero {
+    padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+  .service-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(700px 360px at 90% 10%, rgba(31, 78, 121, 0.06), transparent 60%);
+    pointer-events: none;
+  }
+
+  .service-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: center;
+    position: relative;
+  }
+
+  .service-hero-content { max-width: 640px; }
+
+  .breadcrumb {
+    margin-bottom: var(--space-6);
+  }
+  .breadcrumb ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    font-size: var(--fs-body-sm);
+    color: var(--color-text-soft);
+  }
+  .breadcrumb li + li::before {
+    content: '/';
+    margin-right: var(--space-2);
+    color: var(--color-border-strong);
+  }
+  .breadcrumb a {
+    color: var(--color-text-soft);
+  }
+  .breadcrumb a:hover { color: var(--color-primary); }
+  .breadcrumb [aria-current='page'] {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .service-icon-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0.4rem 0.875rem;
+    background: var(--color-bg-alt);
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: var(--fs-body-sm);
+    font-weight: 500;
+    margin-bottom: var(--space-5);
+  }
+
+  .service-hero h1 { margin: 0 0 var(--space-4); }
+
+  .service-tagline {
+    font-size: var(--fs-body-lg);
+    color: var(--color-text-mid);
+    max-width: 56ch;
+  }
+
+  .service-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .service-hero-visual {
+    position: relative;
+    aspect-ratio: 4 / 3;
+  }
+
+  .service-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primary);
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    isolation: isolate;
+  }
+  .service-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(31, 78, 121, 0.55), rgba(22, 58, 92, 0.85));
+    z-index: 1;
+  }
+  .service-image-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.18);
+    z-index: 0;
+  }
+
+  /* Detalle */
+  .service-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .service-intro-text {
+    font-size: var(--fs-body-lg);
+    color: var(--color-text-mid);
+    margin: 0;
+    max-width: 38ch;
+  }
+
+  .service-blocks {
+    display: grid;
+    gap: var(--space-10);
+  }
+
+  .service-block h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-5);
+  }
+
+  .service-block ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .service-block li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    color: var(--color-text-mid);
+    line-height: 1.6;
+  }
+
+  .check {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 50%;
+    margin-top: 3px;
+  }
+
+  /* CTA */
+  .service-cta {
+    background: var(--color-primary);
+    color: #fff;
+    padding-block: var(--space-16);
+    text-align: center;
+  }
+  .service-cta-inner h2 {
+    color: #fff;
+    margin-bottom: var(--space-3);
+  }
+  .service-cta-inner p {
+    color: var(--color-text-on-dark-soft);
+    margin-bottom: var(--space-8);
+    font-size: var(--fs-body-lg);
+  }
+  .service-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    justify-content: center;
+  }
+  .service-cta-actions .btn-primary {
+    background: #fff;
+    color: var(--color-primary);
+  }
+  .service-cta-actions .btn-primary:hover {
+    background: var(--color-bg-alt);
+    color: var(--color-primary-dark);
+  }
+  .service-cta-actions .btn-secondary {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .service-cta-actions .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #fff;
+    color: #fff;
+  }
+
+  /* Servicios relacionados */
+  .related-head {
+    max-width: 720px;
+    margin-bottom: var(--space-10);
+  }
+  .related-head h2 { margin: 0; }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .related-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-8);
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    color: inherit;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    height: 100%;
+  }
+  .related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent);
+    color: inherit;
+  }
+
+  .related-icon {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-alt);
+    color: var(--color-primary);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-5);
+    transition: background var(--transition), color var(--transition);
+  }
+  .related-card:hover .related-icon {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .related-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .related-card p {
+    color: var(--color-text-mid);
+    font-size: var(--fs-body-sm);
+    margin: 0 0 var(--space-6);
+    flex-grow: 1;
+  }
+
+  .related-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: var(--fs-body-sm);
+    transition: gap var(--transition);
+  }
+  .related-card:hover .related-link {
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 700px) {
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 960px) {
+    .service-hero-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: var(--space-16);
+    }
+    .service-detail-grid {
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: var(--space-16);
+    }
+    .related-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
