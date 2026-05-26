@@ -46,4 +46,8 @@ export const cloudinaryIds = {
     herencias: 'herencias_ahi5wh',
     otras: 'otras_a3fwic',
   },
+  team: {
+    pablo: 'pablo_em5eia',
+    ernesto: 'ernesto_ubv7hg',
+  },
 } as const;

@@ -1,6 +1,6 @@
 ---
 import { team } from '../data/team';
-import { url } from '../utils/url';
+import { cdn } from '../utils/cloudinary';
 ---
 
 <div class="team" id="equipo" aria-labelledby="equipo-title">
@@ -18,10 +18,10 @@ import { url } from '../utils/url';
       <article class="member">
         <div class="member-photo">
           <img
-            src={url(member.photo)}
+            src={cdn(member.imageId, { width: 800, crop: 'fill', gravity: 'face' })}
             alt={`Retrato de ${member.name}`}
-            width="900"
-            height="720"
+            width="800"
+            height="640"
             loading="lazy"
             decoding="async"
           />
