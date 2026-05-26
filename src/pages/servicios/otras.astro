@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import ServiceDetail from '../../components/ServiceDetail.astro';
+import { getServiceBySlug } from '../../data/services';
+import { site } from '../../data/site';
+
+const service = getServiceBySlug('otras')!;
+const title = `${service.title} en ${site.city} · ${site.name}`;
+---
+
+<Base title={title} description={service.description}>
+  <ServiceDetail service={service} />
+</Base>
