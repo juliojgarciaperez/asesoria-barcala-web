@@ -2,9 +2,9 @@
 import Icon from './Icon.astro';
 import Team from './Team.astro';
 import { site } from '../data/site';
-import { url } from '../utils/url';
+import { cdn, cloudinaryIds } from '../utils/cloudinary';
 
-const aboutBgUrl = url('images/aranjuez-jardines.webp');
+const aboutBgUrl = cdn(cloudinaryIds.jardines, { width: 1000, crop: 'fill', gravity: 'auto' });
 
 const values = [
   { title: 'Atención personalizada', text: 'Un interlocutor directo que conoce tu negocio.' },

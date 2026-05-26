@@ -1,0 +1,194 @@
+PROMPTS PARA GENERACIÓN DE IMÁGENES — ASESORÍA BARKALA
+========================================================
+
+Cómo usarlo
+-----------
+1. Copia el PROMPT de cada bloque y pégalo en ChatGPT con generación de
+   imagen (GPT-4o, gpt-image-1 o DALL·E) o en cualquier otro generador.
+2. Si la imagen sale con texto/letras (los modelos suelen escribir mal),
+   pide: "Regenerate without any text, letters or signage."
+3. Convierte el resultado final a WebP (calidad 82) antes de subirlo:
+       cwebp -q 82 input.png -o output.webp
+   o súbelo a https://squoosh.app y exporta WebP 82.
+4. Guarda cada archivo en la RUTA exacta que aparece en cada bloque.
+5. git commit -m "imágenes generadas" → el hook reconstruye y publica.
+
+
+Guía de estilo COMÚN (incluir en todos los prompts)
+----------------------------------------------------
+- Editorial corporate photography. Realistic, not illustrated.
+- Soft natural light, premium, calm, trustworthy mood.
+- Color palette grounded in navy blue (#1F4E79), warm beige/cream,
+  off-white and dark wood. Muted tones, no oversaturated colors.
+- Shallow depth of field, sharp foreground.
+- NO text, NO letters, NO logos, NO watermarks, NO recognizable faces,
+  NO institutional names (Hacienda, AEAT, etc. visible).
+- Leave clean negative space when noted.
+
+
+-------------------------------------------------------------------------
+1) HERO DE LA HOME · ruta: public/images/aranjuez-hero.webp
+   Aspect ratio: 16:10 (horizontal). Mínimo 1600×1000 px.
+-------------------------------------------------------------------------
+PROMPT:
+Editorial photograph of the Royal Palace of Aranjuez (Spain) at golden
+hour, photographed from a respectful distance with formal manicured
+gardens in the foreground. Soft warm light, dramatic but calm blue sky
+with subtle clouds. Classical baroque Spanish architecture, sandstone
+facade. Wide horizontal composition with clean negative space on the
+right side for text overlay. No people, no signage, no text, no logos.
+Color palette: deep navy blue sky tones, warm sandstone, muted green
+gardens. Premium editorial style, realistic photography, sharp
+foreground and slightly soft background. Aspect ratio 16:10.
+
+
+-------------------------------------------------------------------------
+2) SECCIÓN NOSOTROS · ruta: public/images/aranjuez-jardines.webp
+   Aspect ratio: 4:5 (vertical). Mínimo 1200×1500 px.
+-------------------------------------------------------------------------
+PROMPT:
+Vertical editorial photograph of the historic Jardines de Aranjuez
+(Spain). A tree-lined alley with manicured hedges leading the eye into
+the distance, a calm reflective pond on one side, stone balustrades and
+weathered classical statues partially visible. Warm late-afternoon light
+filtering through the leaves. Calm, timeless, premium atmosphere. No
+people visible, no text, no signage. Color palette: navy-blue water,
+warm beige stone, muted green foliage, soft amber highlights. Realistic
+photography, shallow depth of field. Vertical composition, aspect ratio
+4:5.
+
+
+-------------------------------------------------------------------------
+3) SERVICIOS CONTABLES · ruta: public/images/services/contables.webp
+   Aspect ratio: 4:3. Mínimo 1200×900 px.
+-------------------------------------------------------------------------
+PROMPT:
+Editorial close-up photograph of a professional accountant's wooden
+desk in a Spanish advisory firm. Foreground: an open ledger or
+accounting book with handwritten entries (use abstract blurred
+script — no readable words), a fountain pen resting on it, a
+brushed-metal calculator slightly out of focus. Soft warm window light
+from the left. Subtle navy-blue notebook in the background. Mood:
+organized, precise, premium. No people, no faces, no logos, no
+readable text. Color palette: navy-blue accents, warm cream paper,
+dark wood. Sharp focus on the ledger and pen. Aspect ratio 4:3.
+
+
+-------------------------------------------------------------------------
+4) SERVICIOS FISCALES · ruta: public/images/services/fiscales.webp
+   Aspect ratio: 4:3. Mínimo 1200×900 px.
+-------------------------------------------------------------------------
+PROMPT:
+Editorial photograph of an official-looking tax document resting on a
+minimalist desk, partially overlapping a folded envelope sealed with a
+dark navy wax-like seal. A pair of reading glasses and a fountain pen
+rest beside it. Warm controlled studio lighting. Serious, trustworthy,
+precise mood. The text on the documents must be abstract blurred lines
+(no readable words). No logos, no real institutional names, no faces.
+Color palette: navy blue, off-white paper, warm desk. Aspect ratio 4:3.
+
+
+-------------------------------------------------------------------------
+5) SERVICIOS LABORALES · ruta: public/images/services/laborales.webp
+   Aspect ratio: 4:3. Mínimo 1200×900 px.
+-------------------------------------------------------------------------
+PROMPT:
+Editorial photograph of a small business meeting table photographed
+from behind: anonymous professionals collaborating, shot from the back
+or showing only hands (NO faces visible at all). On the table: a
+laptop with abstract blurred shapes on screen (no readable UI), a neat
+stack of documents, two coffee cups, a navy-blue notebook. Bright
+modern office, large window with soft daylight. Calm, human, premium.
+No logos, no readable text, no recognizable faces. Color palette: navy
+blue, warm wood, soft daylight white. Aspect ratio 4:3.
+
+
+-------------------------------------------------------------------------
+6) CONTROLLING FINANCIERO · ruta: public/images/services/controlling.webp
+   Aspect ratio: 4:3. Mínimo 1200×900 px.
+-------------------------------------------------------------------------
+PROMPT:
+Editorial photograph of a clean financial report printed on paper laid
+on a wooden desk. The report shows elegant upward-trending line graphs
+and minimalist bar charts drawn in navy-blue ink (no numbers or
+labels, just abstract shapes). A laptop slightly out of focus in the
+background shows abstract dashboard-like blocks (no readable text or
+real software UI). A fountain pen and reading glasses beside the
+report. Warm focused analytical mood. No people, no logos. Color
+palette: navy-blue accents on white paper, warm beige desk. Aspect
+ratio 4:3.
+
+
+-------------------------------------------------------------------------
+7) ASESORÍA EMPRESARIAL · ruta: public/images/services/empresarial.webp
+   Aspect ratio: 4:3. Mínimo 1200×900 px.
+-------------------------------------------------------------------------
+PROMPT:
+Editorial top-down photograph of a strategy planning desk: a large
+clean sheet of paper with sketched circles, arrows and minimalist
+diagrams (no readable text), a wooden architect ruler, a navy fountain
+pen, a small succulent plant in a stone pot, a folded leather
+notebook. Warm natural light, calm and intentional composition.
+Premium consultancy feel. No people, no logos. Color palette: navy-blue
+ink, warm paper, muted green plant, light wood. Aspect ratio 4:3,
+top-down flat-lay composition.
+
+
+-------------------------------------------------------------------------
+8) HERENCIAS Y SUCESIONES · ruta: public/images/services/herencias.webp
+   Aspect ratio: 4:3. Mínimo 1200×900 px.
+-------------------------------------------------------------------------
+PROMPT:
+Editorial photograph of an elegant solicitor's wooden desk: a folded
+set of formal papers tied with a navy-blue ribbon, a vintage fountain
+pen resting beside them, a brass paperweight, a closed leather
+notebook. Warm soft window light. Dignified and respectful mood,
+conveying trust in a sensitive matter. No people, no readable text on
+documents (only abstract blurred lines), no logos, no religious or
+funerary symbols. Color palette: navy blue, warm brass, deep wood,
+cream paper. Aspect ratio 4:3.
+
+
+-------------------------------------------------------------------------
+9) OTRAS GESTIONES · ruta: public/images/services/otras.webp
+   Aspect ratio: 4:3. Mínimo 1200×900 px.
+-------------------------------------------------------------------------
+PROMPT:
+Editorial close-up photograph of a contract being signed: a hand
+holding a navy-blue fountain pen above a printed contract on a wooden
+desk. Crop the hand at the wrist (NO face visible). A small folded
+notebook and a brass key nearby. Warm side light, premium and
+trustworthy mood. The contract text must be abstract blurred
+paragraphs (no readable words), no logos, no faces. Color palette:
+navy blue, warm cream paper, dark wood. Aspect ratio 4:3.
+
+
+-------------------------------------------------------------------------
+10) OPEN GRAPH (compartir en redes) · ruta: public/og-image.jpg
+    Tamaño exacto: 1200×630 px (aspect ratio 1.91:1). Formato JPG.
+-------------------------------------------------------------------------
+PROMPT:
+Premium editorial horizontal banner, exact dimensions 1200×630.
+Left two-thirds: warm photograph of the Royal Palace of Aranjuez at
+golden hour with soft atmospheric mist. Right third: clean negative
+space filled with deep navy blue (#1F4E79) for text overlay (do NOT
+add any actual text, letters or logos in the image). Subtle vignette
+transition between photo and navy block. Calm, trustworthy, premium
+consultancy brand. No people, no logos, no text whatsoever. Aspect
+ratio exactly 1.91:1 (1200×630).
+
+
+-------------------------------------------------------------------------
+Después de generar las imágenes
+-------------------------------------------------------------------------
+- Comprueba que el peso de cada archivo es ≤ 250 KB (WebP 82 lo cumple
+  para las dimensiones indicadas).
+- Mantén los nombres EXACTOS de archivo (la web ya los busca por ese
+  nombre). Si quieres usar otros nombres, edita src/data/services.ts
+  y src/components/Hero.astro / About.astro.
+- Ejecuta:
+       git add public/images public/og-image.jpg
+       git commit -m "Añade imágenes generadas"
+       git push
+  El hook pre-commit regenerará /docs automáticamente y GitHub Pages
+  publicará la web en unos segundos.

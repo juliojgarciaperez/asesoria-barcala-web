@@ -1,9 +1,9 @@
 ---
 import { site } from '../data/site';
-import { url } from '../utils/url';
+import { cdn, cloudinaryIds } from '../utils/cloudinary';
 import Icon from './Icon.astro';
 
-const heroBgUrl = url('images/aranjuez-hero.webp');
+const heroBgUrl = cdn(cloudinaryIds.hero, { width: 1600, crop: 'fill', gravity: 'auto' });
 ---
 
 <section class="hero" aria-labelledby="hero-title">

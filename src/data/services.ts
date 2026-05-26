@@ -13,9 +13,8 @@ export interface Service {
   tagline: string;
   intro: string;
   blocks: ServiceBlock[];
-  // Imagen: ruta relativa dentro de /public. Si el archivo no existe se
-  // mostrará un placeholder generado con CSS (gradient + icono grande).
-  image: string;
+  // public_id Cloudinary (resuelto vía cdn() helper en los componentes).
+  imageId: string;
   imageAlt: string;
 }
 
@@ -51,7 +50,7 @@ export const services: Service[] = [
         ],
       },
     ],
-    image: 'images/services/contables.webp',
+    imageId: 'contables_l4sz5r',
     imageAlt: 'Mesa de trabajo con documentos contables y calculadora',
   },
   {
@@ -82,7 +81,7 @@ export const services: Service[] = [
         ],
       },
     ],
-    image: 'images/services/fiscales.webp',
+    imageId: 'fiscales_a35wy0',
     imageAlt: 'Detalle de documentación fiscal y un sello de notificación',
   },
   {
@@ -114,7 +113,7 @@ export const services: Service[] = [
         ],
       },
     ],
-    image: 'images/services/laborales.webp',
+    imageId: 'laborales_rupeck',
     imageAlt: 'Reunión de equipo profesional revisando documentación',
   },
   {
@@ -144,7 +143,7 @@ export const services: Service[] = [
         ],
       },
     ],
-    image: 'images/services/controlling.webp',
+    imageId: 'controlling_na8ybr',
     imageAlt: 'Gráficos de evolución financiera sobre una mesa de trabajo',
   },
   {
@@ -167,7 +166,7 @@ export const services: Service[] = [
         ],
       },
     ],
-    image: 'images/services/empresarial.webp',
+    imageId: 'empresarial_oacc1s',
     imageAlt: 'Equipo de profesionales analizando un plan de negocio',
   },
   {
@@ -201,7 +200,7 @@ export const services: Service[] = [
         ],
       },
     ],
-    image: 'images/services/herencias.webp',
+    imageId: 'herencias_ahi5wh',
     imageAlt: 'Documentación notarial sobre una mesa de trabajo',
   },
   {
@@ -225,7 +224,7 @@ export const services: Service[] = [
         ],
       },
     ],
-    image: 'images/services/otras.webp',
+    imageId: 'otras_a3fwic',
     imageAlt: 'Firma de un contrato sobre un escritorio',
   },
 ];

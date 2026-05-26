@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import { services, type Service } from '../../data/services';
 import { url } from '../../utils/url';
+import { cdn } from '../../utils/cloudinary';
 import { site } from '../../data/site';
 
 export const getStaticPaths = (() => {
@@ -22,7 +23,7 @@ const { service } = Astro.props;
 // Servicios relacionados: el resto (máximo 3)
 const related = services.filter((s) => s.id !== service.id).slice(0, 3);
 
-const heroImageUrl = url(service.image);
+const heroImageUrl = cdn(service.imageId, { width: 1200, crop: 'fill', gravity: 'auto' });
 const seoTitle = `${service.title} en ${site.city} · ${site.name}`;
 const seoDescription = service.description;
 const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Consulta sobre ${service.title}`)}`;

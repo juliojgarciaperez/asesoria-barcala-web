@@ -1,6 +1,7 @@
 ---
 import { site } from '../data/site';
 import { absoluteUrl, url } from '../utils/url';
+import { cdn, cloudinaryIds } from '../utils/cloudinary';
 
 interface Props {
   title?: string;
@@ -11,16 +12,19 @@ interface Props {
 
 const defaultTitle = `${site.name} · Asesoría fiscal y contable en ${site.city}`;
 const defaultDescription = `Asesoría integral en ${site.city} para empresas y autónomos: fiscal, contable, laboral y empresarial. Trato cercano y técnicamente riguroso. Pide cita.`;
+const defaultOgImage = cdn(cloudinaryIds.og, { width: 1200, height: 630, crop: 'fill', gravity: 'auto' });
 
 const {
   title = defaultTitle,
   description = defaultDescription,
-  ogImage = 'og-image.jpg',
+  ogImage,
   noindex = false,
 } = Astro.props;
 
 const canonical = Astro.url.toString();
-const ogImageUrl = absoluteUrl(ogImage);
+const ogImageUrl = ogImage
+  ? (ogImage.startsWith('http') ? ogImage : absoluteUrl(ogImage))
+  : defaultOgImage;
 const siteUrl = absoluteUrl();
 
 const jsonLd = {
