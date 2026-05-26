@@ -1,8 +1,8 @@
 export const site = {
   name: 'Asesoría Barkala',
   shortName: 'Barkala',
-  domain: 'juliojgarciaperez.github.io/asesoria-barcala-web',
-  url: 'https://juliojgarciaperez.github.io/asesoria-barcala-web',
+  domain: 'asesoriabarkala.com',
+  url: 'https://asesoriabarkala.com',
   // Si tienes el logo original (PNG/SVG/WebP), guárdalo en /public con este nombre
   // y la web lo usará automáticamente. Mantén proporción horizontal ~7:1.
   logoFile: 'logo.png',

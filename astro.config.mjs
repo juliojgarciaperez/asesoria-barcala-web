@@ -1,12 +1,11 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Configurado para GitHub Pages en juliojgarciaperez.github.io/asesoria-barcala-web/
+// Configurado para GitHub Pages con dominio personalizado asesoriabarkala.com.
 // El build se versiona en /docs (estrategia "pre-commit" — Pages lee main:/docs).
-// Cambia `site` y elimina `base` si en el futuro se usa un dominio personalizado.
+// El archivo public/CNAME mantiene el dominio personalizado tras cada deploy.
 export default defineConfig({
-  site: 'https://juliojgarciaperez.github.io',
-  base: '/asesoria-barcala-web',
+  site: 'https://asesoriabarkala.com',
   trailingSlash: 'ignore',
   outDir: './docs',
   integrations: [sitemap()],

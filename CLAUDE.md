@@ -4,7 +4,7 @@ Landing web estática para **Asesoría Barkala** (Aranjuez, Madrid).
 Construida con **Astro 4 + TypeScript**, desplegada en GitHub Pages
 sirviendo directamente desde `main:/docs`.
 
-URL pública: <https://juliojgarciaperez.github.io/asesoria-barcala-web/>
+URL pública: <https://asesoriabarkala.com/>
 
 ---
 
@@ -107,11 +107,14 @@ Pages legacy.
 
 `astro.config.mjs`:
 ```js
-site: 'https://juliojgarciaperez.github.io',
-base: '/asesoria-barcala-web',
+site: 'https://asesoriabarkala.com',
 trailingSlash: 'ignore',
 outDir: './docs',
 ```
+
+El archivo **`public/CNAME`** (contiene `asesoriabarkala.com`) mantiene el
+dominio personalizado en cada deploy. **No borrarlo** — sin él, GitHub
+Pages perdería el dominio al republicar.
 
 Para diagnosticar fallos de deploy:
 ```bash
