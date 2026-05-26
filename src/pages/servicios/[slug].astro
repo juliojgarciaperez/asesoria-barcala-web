@@ -64,11 +64,7 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Consulta sobr
         </div>
 
         <div class="service-hero-visual" aria-hidden="true">
-          <div class="service-image" style={`background-image: url('${heroImageUrl}');`}>
-            <div class="service-image-fallback">
-              <Icon name={service.icon} size={120} />
-            </div>
-          </div>
+          <div class="service-image" style={`background-image: url('${heroImageUrl}');`}></div>
         </div>
       </div>
     </header>
@@ -231,33 +227,13 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Consulta sobr
   }
 
   .service-image {
-    position: relative;
     width: 100%;
     height: 100%;
-    background-color: var(--color-primary);
+    background-color: var(--color-bg-alt);
     background-size: cover;
     background-position: center;
     border-radius: var(--radius-lg);
-    overflow: hidden;
     box-shadow: var(--shadow-lg);
-    isolation: isolate;
-  }
-  .service-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(135deg, rgba(31, 78, 121, 0.55), rgba(22, 58, 92, 0.85));
-    z-index: 1;
-  }
-  .service-image-fallback {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.18);
-    z-index: 0;
   }
 
   /* Detalle */
