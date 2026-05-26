@@ -1,7 +1,6 @@
 ---
 import { team } from '../data/team';
 import { url } from '../utils/url';
-import Icon from './Icon.astro';
 ---
 
 <div class="team" id="equipo" aria-labelledby="equipo-title">
@@ -31,16 +30,6 @@ import Icon from './Icon.astro';
           <span class="member-role">{member.role}</span>
           <h4>{member.name}</h4>
           <p>{member.bio}</p>
-          <a
-            class="member-linkedin"
-            href={member.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Perfil de LinkedIn de ${member.name}`}
-          >
-            <Icon name="linkedin" size={16} />
-            <span>Ver perfil en LinkedIn</span>
-          </a>
         </div>
       </article>
     ))}
@@ -105,10 +94,15 @@ import Icon from './Icon.astro';
   }
 
   .member-body {
-    padding: var(--space-6) var(--space-6) var(--space-7);
+    padding: var(--space-8);
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-4);
+  }
+  @media (min-width: 960px) {
+    .member-body {
+      padding: var(--space-10);
+    }
   }
 
   .member-role {
@@ -131,29 +125,9 @@ import Icon from './Icon.astro';
   .member p {
     color: var(--color-text-mid);
     font-size: var(--fs-body-sm);
-    line-height: 1.65;
+    line-height: 1.7;
     margin: 0;
     flex-grow: 1;
-  }
-
-  .member-linkedin {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--color-primary);
-    font-size: var(--fs-body-sm);
-    font-weight: 500;
-    padding: 0.5rem 0.875rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    align-self: flex-start;
-    transition: all var(--transition);
-    margin-top: var(--space-2);
-  }
-  .member-linkedin:hover {
-    background: var(--color-primary);
-    color: #fff;
-    border-color: var(--color-primary);
   }
 
   @media (min-width: 700px) {
