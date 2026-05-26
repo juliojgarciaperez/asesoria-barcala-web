@@ -3,6 +3,9 @@ export const site = {
   shortName: 'Barkala',
   domain: 'juliojgarciaperez.github.io/asesoria-barcala-web',
   url: 'https://juliojgarciaperez.github.io/asesoria-barcala-web',
+  // Si tienes el logo original (PNG/SVG/WebP), guárdalo en /public con este nombre
+  // y la web lo usará automáticamente. Mantén proporción horizontal ~7:1.
+  logoFile: 'logo.svg',
 
   // Datos de contacto — sustituir por valores reales antes de publicar
   phone: '+34 608 68 36 76',
@@ -28,9 +31,9 @@ export const site = {
   hoursAfternoon: '16:00 – 19:00',
 
   // Cifras de confianza
-  yearsExperience: 25,
+  yearsExperience: 20,
   numClients: 300,
-  foundedYear: 2000,
+  foundedYear: 2006,
 
   // Legal — sustituir
   legalName: 'Asesoría Barkala S.L.',

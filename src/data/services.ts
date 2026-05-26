@@ -171,6 +171,40 @@ export const services: Service[] = [
     imageAlt: 'Equipo de profesionales analizando un plan de negocio',
   },
   {
+    id: 'herencias',
+    title: 'Herencias y Sucesiones',
+    shortTitle: 'Herencias',
+    description:
+      'Tramitamos herencias y sucesiones de principio a fin: certificados, declaración de herederos, cuaderno particional, liquidación de impuestos e inscripciones registrales. Te acompañamos en un momento delicado.',
+    icon: 'scroll-text',
+    tagline: 'Acompañamiento integral en un momento delicado.',
+    intro:
+      'Una herencia siempre es un proceso complejo y, con frecuencia, doloroso. Nos encargamos de toda la gestión técnica para que tú no tengas que ocuparte de los trámites: desde la obtención de los certificados iniciales hasta la inscripción registral final. Te explicamos cada paso con claridad y sin tecnicismos innecesarios.',
+    blocks: [
+      {
+        heading: 'Tramitación de la herencia',
+        items: [
+          'Obtención del certificado de defunción, certificado de últimas voluntades y certificado de contratos de seguros con cobertura de fallecimiento.',
+          'Análisis del testamento o, en su defecto, tramitación de la declaración de herederos abintestato.',
+          'Inventario y valoración de bienes, derechos y deudas del causante.',
+          'Asesoramiento sobre aceptación, repudiación o aceptación a beneficio de inventario.',
+          'Preparación del cuaderno particional y coordinación con notaría.',
+        ],
+      },
+      {
+        heading: 'Aspectos fiscales y registrales',
+        items: [
+          'Liquidación del Impuesto sobre Sucesiones y Donaciones (modelos 650 y 651).',
+          'Liquidación del Impuesto sobre el Incremento del Valor de los Terrenos de Naturaleza Urbana (plusvalía municipal).',
+          'Inscripción de bienes inmuebles heredados en el Registro de la Propiedad.',
+          'Cambio de titularidad de cuentas bancarias, vehículos y demás bienes.',
+        ],
+      },
+    ],
+    image: 'images/services/herencias.webp',
+    imageAlt: 'Documentación notarial sobre una mesa de trabajo',
+  },
+  {
     id: 'otras',
     title: 'Otras Gestiones',
     shortTitle: 'Gestiones',
