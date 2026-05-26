@@ -1,6 +1,5 @@
 ---
 import { site } from '../data/site';
-import { url } from '../utils/url';
 import Icon from './Icon.astro';
 
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -68,14 +67,6 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Consulta desd
         <div class="form-row">
           <label for="message">¿En qué podemos ayudarte? <span aria-hidden="true">*</span></label>
           <textarea id="message" name="message" rows="5" required></textarea>
-        </div>
-
-        <div class="form-check">
-          <input id="rgpd" name="rgpd" type="checkbox" required />
-          <label for="rgpd">
-            He leído y acepto la <a href={url('/politica-de-privacidad')}>política de privacidad</a>.
-            <span aria-hidden="true">*</span>
-          </label>
         </div>
 
         <button type="submit" class="btn btn-primary">
@@ -184,26 +175,6 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent('Consulta desd
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(31, 78, 121, 0.12);
   }
-
-  .form-check {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-3);
-    font-size: var(--fs-body-sm);
-    color: var(--color-text-mid);
-  }
-  .form-check input {
-    margin-top: 4px;
-    width: 18px;
-    height: 18px;
-    accent-color: var(--color-primary);
-    flex-shrink: 0;
-  }
-  .form-check a {
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-  .form-check label span { color: var(--color-error); }
 
   .form-note {
     font-size: 0.8125rem;
