@@ -1,0 +1,173 @@
+---
+import { url } from '../utils/url';
+---
+
+<aside
+  id="cookie-banner"
+  class="cookie-banner"
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="cookie-title"
+  aria-describedby="cookie-desc"
+  hidden
+>
+  <div class="cookie-inner">
+    <div class="cookie-text">
+      <p id="cookie-title" class="cookie-title">Cookies en barkala</p>
+      <p id="cookie-desc" class="cookie-desc">
+        Utilizamos cookies analíticas (Google Analytics) para entender qué partes de la web son
+        útiles. No se cargan ni se envía ningún dato hasta que aceptes. Puedes cambiar tu decisión
+        en cualquier momento desde la <a href={url('/politica-de-cookies')}>política de cookies</a>.
+      </p>
+    </div>
+
+    <div class="cookie-actions">
+      <button type="button" class="cookie-btn cookie-btn-reject" id="cookie-reject">
+        Rechazar
+      </button>
+      <button type="button" class="cookie-btn cookie-btn-accept" id="cookie-accept">
+        Aceptar
+      </button>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 100;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 48px rgba(15, 27, 45, 0.18);
+    padding: var(--space-5) var(--space-6);
+    max-width: 880px;
+    margin-inline: auto;
+    animation: slideUp 280ms ease-out;
+  }
+  .cookie-banner[hidden] { display: none; }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cookie-banner { animation: none; }
+  }
+
+  .cookie-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .cookie-title {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.0625rem;
+    color: var(--color-text);
+    margin: 0 0 var(--space-1);
+  }
+  .cookie-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-mid);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .cookie-desc a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  .cookie-btn {
+    flex: 1;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    border: 1px solid;
+    cursor: pointer;
+    transition: all var(--transition);
+    min-height: 44px;
+  }
+  /* AEPD: 'Rechazar' debe ser tan visible como 'Aceptar'. Estilos equivalentes. */
+  .cookie-btn-reject {
+    background: #fff;
+    color: var(--color-text);
+    border-color: var(--color-border-strong);
+  }
+  .cookie-btn-reject:hover {
+    border-color: var(--color-text);
+    background: var(--color-bg-alt);
+  }
+  .cookie-btn-accept {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
+  .cookie-btn-accept:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+  }
+
+  @media (min-width: 700px) {
+    .cookie-inner {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-6);
+    }
+    .cookie-text { flex: 1; }
+    .cookie-actions { flex-shrink: 0; }
+    .cookie-btn { min-width: 110px; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const STORAGE_KEY = 'barkala-consent';
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
+
+    let stored = null;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (_) {}
+
+    if (!stored) {
+      banner.hidden = false;
+    }
+
+    function save(value) {
+      try { localStorage.setItem(STORAGE_KEY, value); } catch (_) {}
+      banner.hidden = true;
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          analytics_storage: value === 'accepted' ? 'granted' : 'denied',
+        });
+      }
+    }
+
+    acceptBtn && acceptBtn.addEventListener('click', () => save('accepted'));
+    rejectBtn && rejectBtn.addEventListener('click', () => save('rejected'));
+
+    // Permite reabrir el banner desde la política de cookies con
+    // `<button data-open-cookies>...</button>` o un link con #cookies.
+    document.querySelectorAll('[data-open-cookies]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+        banner.hidden = false;
+      });
+    });
+  })();
+</script>

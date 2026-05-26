@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../utils/url';
+import { site } from '../data/site';
+---
+
+<Base
+  title={`Política de cookies · ${site.name}`}
+  description={`Información sobre el uso de cookies en ${site.domain}.`}
+>
+  <section class="legal-section">
+    <div class="container-narrow">
+      <header class="legal-head">
+        <a href={url('/')} class="back-link">← Volver al inicio</a>
+        <h1>Política de cookies</h1>
+        <p class="legal-updated">Última actualización: 26 de mayo de 2026</p>
+      </header>
+
+      <article class="legal-content">
+        <h2>¿Qué son las cookies?</h2>
+        <p>
+          Las cookies son pequeños archivos que un sitio web almacena en tu dispositivo cuando lo
+          visitas. Sirven para recordar información sobre tu visita, lo que puede facilitar el uso
+          del sitio o permitir al titular conocer cómo se utiliza.
+        </p>
+
+        <h2>¿Qué cookies utilizamos?</h2>
+        <p>
+          En <strong>{site.domain}</strong> utilizamos cookies técnicas estrictamente necesarias y,
+          de forma opcional, cookies analíticas de terceros que únicamente se cargan tras tu
+          consentimiento explícito.
+        </p>
+
+        <h3>Cookies técnicas (estrictamente necesarias)</h3>
+        <ul>
+          <li>
+            <strong>Almacenamiento de preferencias</strong> (clave <code>barkala-consent</code> en
+            <code>localStorage</code>): recuerda tu decisión sobre el aviso de cookies para no
+            mostrártelo de nuevo. No identifica al usuario ni se comparte con terceros.
+          </li>
+        </ul>
+
+        <h3>Cookies analíticas (Google Analytics 4)</h3>
+        <p>
+          Si das tu consentimiento, cargamos <strong>Google Analytics 4</strong> (identificador
+          <code>G-E53RSKHB9D</code>), que escribe las siguientes cookies para medir de forma
+          agregada cómo se usa la web:
+        </p>
+        <ul>
+          <li><strong><code>_ga</code></strong> — Identificador único anonimizado. Duración: 2 años. Proveedor: Google LLC.</li>
+          <li><strong><code>_ga_E53RSKHB9D</code></strong> — Estado de sesión. Duración: 2 años. Proveedor: Google LLC.</li>
+        </ul>
+        <p>
+          Hemos configurado Google Analytics con <em>Consent Mode v2</em> y anonimización de IP
+          (<code>anonymize_ip: true</code>). Estos datos se transfieren a Google fuera del Espacio
+          Económico Europeo en algunos casos; consulta la
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">política de privacidad de Google</a>
+          para más información.
+        </p>
+
+        <h2>Tu consentimiento</h2>
+        <p>
+          La primera vez que visitas la web mostramos un aviso en el que puedes <strong>aceptar</strong>
+          o <strong>rechazar</strong> las cookies analíticas. Si no consientes, Google Analytics
+          permanece bloqueado y no se envía ningún dato.
+        </p>
+        <p>
+          Puedes cambiar tu decisión en cualquier momento pulsando aquí:
+          <button type="button" class="inline-link" data-open-cookies>Reabrir el aviso de cookies</button>.
+        </p>
+
+        <h2>Cómo gestionar las cookies en tu navegador</h2>
+        <p>
+          Además del aviso de esta web, puedes configurar tu navegador para aceptar, rechazar o
+          eliminar las cookies de cualquier sitio:
+        </p>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Google Chrome</a></li>
+          <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" rel="noopener noreferrer">Mozilla Firefox</a></li>
+          <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">Apple Safari</a></li>
+          <li><a href="https://support.microsoft.com/es-es/microsoft-edge" target="_blank" rel="noopener noreferrer">Microsoft Edge</a></li>
+        </ul>
+
+        <h2>Cambios en esta política</h2>
+        <p>
+          Si en el futuro modificamos esta política (por ejemplo, al añadir nuevas cookies),
+          actualizaremos esta página y, cuando sea pertinente, volveremos a solicitar tu
+          consentimiento.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <style>
+    .legal-section { padding-block: var(--space-16) var(--section-y); }
+    .legal-head { margin-bottom: var(--space-12); }
+    .back-link {
+      display: inline-block;
+      margin-bottom: var(--space-6);
+      font-size: var(--fs-body-sm);
+      color: var(--color-text-soft);
+    }
+    .back-link:hover { color: var(--color-primary); }
+    .legal-updated {
+      color: var(--color-text-soft);
+      font-size: var(--fs-body-sm);
+      margin: 0;
+    }
+    .legal-content :global(h2) {
+      font-size: 1.5rem;
+      margin-top: var(--space-10);
+      margin-bottom: var(--space-4);
+    }
+    .legal-content :global(h2):first-child { margin-top: 0; }
+    .legal-content :global(h3) {
+      font-size: 1.125rem;
+      margin-top: var(--space-6);
+      margin-bottom: var(--space-3);
+    }
+    .legal-content :global(p),
+    .legal-content :global(li) {
+      color: var(--color-text-mid);
+      line-height: 1.7;
+    }
+    .legal-content :global(ul) {
+      padding-left: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+    .legal-content :global(strong),
+    .legal-content :global(code) { color: var(--color-text); }
+    .legal-content :global(code) {
+      font-size: 0.875em;
+      background: var(--color-bg-alt);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .legal-content :global(.inline-link) {
+      font: inherit;
+      color: var(--color-primary);
+      background: none;
+      border: none;
+      padding: 0;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .legal-content :global(.inline-link:hover) { color: var(--color-primary-dark); }
+  </style>
+</Base>

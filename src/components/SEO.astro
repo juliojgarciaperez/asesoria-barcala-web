@@ -123,11 +123,37 @@ const jsonLd = {
 
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-<!-- Google tag (gtag.js) — GA4 -->
+<!--
+  Google tag (gtag.js) — GA4 con Consent Mode v2.
+  Por defecto NEGAMOS el consentimiento; el banner de cookies lo
+  actualiza a 'granted' cuando el usuario acepta. Cumple con la guía
+  vigente de la AEPD: GA no escribe cookies ni envía hits hasta
+  consentimiento explícito.
+-->
 <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-E53RSKHB9D"></script>
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-E53RSKHB9D');
+
+  // Estado por defecto: TODO denegado hasta que el usuario acepte.
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500,
+  });
+
+  // Si el usuario ya aceptó en una visita anterior, restauramos el consentimiento
+  // ANTES de la primera llamada a config para que el primer hit sea válido.
+  try {
+    if (localStorage.getItem('barkala-consent') === 'accepted') {
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+      });
+    }
+  } catch (_) { /* localStorage bloqueado: mantenemos denied */ }
+
+  gtag('config', 'G-E53RSKHB9D', { anonymize_ip: true });
 </script>
