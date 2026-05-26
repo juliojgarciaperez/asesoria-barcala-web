@@ -5,7 +5,7 @@ export const site = {
   url: 'https://juliojgarciaperez.github.io/asesoria-barcala-web',
   // Si tienes el logo original (PNG/SVG/WebP), guárdalo en /public con este nombre
   // y la web lo usará automáticamente. Mantén proporción horizontal ~7:1.
-  logoFile: 'logo.svg',
+  logoFile: 'logo.png',
 
   // Datos de contacto — sustituir por valores reales antes de publicar
   phone: '+34 608 68 36 76',
