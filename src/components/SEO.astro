@@ -122,3 +122,12 @@ const jsonLd = {
 />
 
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<!-- Google tag (gtag.js) — GA4 -->
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-E53RSKHB9D"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E53RSKHB9D');
+</script>

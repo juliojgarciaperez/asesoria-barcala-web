@@ -11,8 +11,9 @@ URL pública: <https://asesoriabarkala.com/>
 ## Stack y filosofía
 
 - **Astro 4.16** con TypeScript estricto. Salida 100% HTML estático,
-  cero JS por defecto. Sólo hay JS inline en `Header.astro` (toggle
-  móvil + dropdown).
+  cero JS por defecto. Hay JS inline en `Header.astro` (toggle móvil
+  + dropdown) y **Google Analytics 4** (gtag.js, ID `G-E53RSKHB9D`)
+  inyectado en `SEO.astro` → presente en todas las páginas.
 - **Sin frameworks UI**. CSS scoped por componente (`<style>`), tokens
   globales en `src/styles/tokens.css`.
 - **Tipografía**: Fraunces (titulares) + Inter (cuerpo), cargadas desde
