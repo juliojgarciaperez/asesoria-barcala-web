@@ -124,17 +124,17 @@ const jsonLd = {
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 <!--
-  Google tag (gtag.js) — GA4 con Consent Mode v2.
-  Por defecto NEGAMOS el consentimiento; el banner de cookies lo
-  actualiza a 'granted' cuando el usuario acepta. Cumple con la guía
-  vigente de la AEPD: GA no escribe cookies ni envía hits hasta
-  consentimiento explícito.
+  Google Tag Manager (GTM-MQK93L8X) con Consent Mode v2.
+  Definimos dataLayer + gtag y NEGAMOS el consentimiento por defecto
+  ANTES de cargar GTM, para que ninguna etiqueta (GA4 G-E53RSKHB9D
+  incluida) escriba cookies ni envíe hits hasta consentimiento explícito.
+  El banner de cookies actualiza analytics_storage a 'granted' al aceptar.
+  GA4 se dispara como etiqueta DENTRO del contenedor GTM (ya no hay
+  gtag.js directo).
 -->
-<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-E53RSKHB9D"></script>
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
   // Estado por defecto: TODO denegado hasta que el usuario acepte.
   gtag('consent', 'default', {
@@ -145,8 +145,8 @@ const jsonLd = {
     wait_for_update: 500,
   });
 
-  // Si el usuario ya aceptó en una visita anterior, restauramos el consentimiento
-  // ANTES de la primera llamada a config para que el primer hit sea válido.
+  // Si el usuario ya aceptó en una visita anterior, restauramos el
+  // consentimiento ANTES de cargar GTM para que el primer hit sea válido.
   try {
     if (localStorage.getItem('barkala-consent') === 'accepted') {
       gtag('consent', 'update', {
@@ -154,6 +154,12 @@ const jsonLd = {
       });
     }
   } catch (_) { /* localStorage bloqueado: mantenemos denied */ }
-
-  gtag('config', 'G-E53RSKHB9D', { anonymize_ip: true });
 </script>
+
+<!-- Google Tag Manager -->
+<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MQK93L8X');</script>
+<!-- End Google Tag Manager -->
