@@ -126,11 +126,9 @@ const jsonLd = {
 <!--
   Google Tag Manager (GTM-MQK93L8X) con Consent Mode v2.
   Definimos dataLayer + gtag y NEGAMOS el consentimiento por defecto
-  ANTES de cargar GTM, para que ninguna etiqueta (GA4 G-E53RSKHB9D
-  incluida) escriba cookies ni envíe hits hasta consentimiento explícito.
-  El banner de cookies actualiza analytics_storage a 'granted' al aceptar.
-  GA4 se dispara como etiqueta DENTRO del contenedor GTM (ya no hay
-  gtag.js directo).
+  ANTES de cargar GTM, para que ninguna etiqueta (GA4 incluida) escriba
+  cookies ni envíe hits hasta consentimiento explícito. El banner de
+  cookies actualiza analytics_storage a 'granted' al aceptar.
 -->
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
